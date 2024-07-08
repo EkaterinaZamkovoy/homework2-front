@@ -1,20 +1,20 @@
-import React from 'react'
-import {pureOnEnter} from '../GreetingContainer'
+import React, { KeyboardEvent } from "react";
+import { pureOnEnter } from "../GreetingContainer";
 
-let added: any
+let added: boolean;
 const addUser = () => {
-    added = true
-}
+  added = true;
+};
 
 beforeEach(() => {
-    added = false
-})
+  added = false;
+});
 
-test('name 1', () => {
-    pureOnEnter({key: 'Enter'} as any, addUser)
-    expect(added).toBe(true)
-})
-test('name 2', () => {
-    pureOnEnter({key: ''} as any, addUser)
-    expect(added).toBe(false)
-})
+test("name 1", () => {
+  pureOnEnter({ key: "Enter" } as KeyboardEvent<HTMLInputElement>, addUser);
+  expect(added).toBe(true);
+});
+test("name 2", () => {
+  pureOnEnter({ key: "" } as KeyboardEvent<HTMLInputElement>, addUser);
+  expect(added).toBe(false);
+});
