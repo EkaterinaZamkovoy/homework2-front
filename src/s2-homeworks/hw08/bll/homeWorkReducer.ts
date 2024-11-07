@@ -12,17 +12,17 @@ export const homeWorkReducer = (
   switch (action.type) {
     case 'sort': {
       // by name
-      if (action.payload === 'up') {
-        return [...state.sort((a, b) => (a.name < b.name ? 1 : -1))];
-      }
-      return [...state.sort((a, b) => (a.name < b.name ? -1 : 1))];
+      const sortedState = [...state].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      return action.payload === 'up' ? sortedState : sortedState.reverse();
       // need to fix
     }
     case 'check': {
       return [
         ...state
           .filter(p => p.age >= action.payload)
-          .sort((a, b) => (a.name < b.name ? 1 : -1)),
+          .sort((a, b) => b.age - a.age),
       ]; // need to fix
     }
     default:
