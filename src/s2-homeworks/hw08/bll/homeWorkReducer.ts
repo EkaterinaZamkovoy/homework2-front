@@ -21,9 +21,16 @@ export const homeWorkReducer = (
     case 'check': {
       return [
         ...state
-          .filter(p => p.age >= action.payload)
-          .sort((a, b) => b.age - a.age),
-      ]; // need to fix
+          .filter(p => p.age >= action.payload) // Фильтрация по возрасту
+          .sort((a, b) => {
+            // Если возраст одинаковый, сохраняем исходный порядок
+            if (b.age === a.age) {
+              return state.indexOf(a) - state.indexOf(b);
+            }
+            // Сортируем по убыванию возраста
+            return b.age - a.age;
+          }), // need to fix
+      ];
     }
     default:
       return state;
