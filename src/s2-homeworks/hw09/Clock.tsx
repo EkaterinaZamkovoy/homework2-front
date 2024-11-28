@@ -32,7 +32,7 @@ function Clock() {
   };
   const onMouseLeave = () => {
     // пишут студенты // спрятать дату если мышка не наведена
-    setShow(true);
+    setShow(false);
   };
 
   let formatterTime = new Intl.DateTimeFormat('ru', {
